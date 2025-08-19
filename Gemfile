@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.2.9'
+ruby '2.7.8'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.7', '>= 6.1.7.10'
@@ -59,3 +59,5 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'simple_form'
 gem 'state_machines'
 gem 'state_machines-activerecord'
+
+gem 'nokogiri', '~> 1.6'
