@@ -61,3 +61,5 @@ gem 'state_machines'
 gem 'state_machines-activerecord'
 
 gem 'nokogiri', '~> 1.6'
+
+gem 'slim-rails'
