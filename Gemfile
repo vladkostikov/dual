@@ -63,3 +63,8 @@ gem 'state_machines-activerecord'
 gem 'nokogiri', '~> 1.6'
 
 gem 'slim-rails'
+
+gem 'kaminari'
+gem 'ransack', '3.2.1'
+gem 'responders'
+gem 'active_model_serializers'
