@@ -8,10 +8,6 @@ class Admin::UsersController < Admin::ApplicationController
     @user = User.find(params[:id])
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
-
   def new
     @user = User.new
   end
@@ -23,6 +19,10 @@ class Admin::UsersController < Admin::ApplicationController
     else
       render(:new_admin_user_url)
     end
+  end
+
+  def edit
+    @user = User.find(params[:id])
   end
 
   def update
