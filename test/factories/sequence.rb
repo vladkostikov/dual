@@ -10,4 +10,8 @@ FactoryBot.define do
   sequence :avatar do |n|
     "avatar#{n}.png"
   end
+
+  sequence :expired_at do |n|
+    Date.today + n
+  end
 end
