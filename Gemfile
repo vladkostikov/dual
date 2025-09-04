@@ -68,3 +68,5 @@ gem 'kaminari'
 gem 'ransack', '3.2.1'
 gem 'responders'
 gem 'active_model_serializers'
+
+gem "react-rails", "~> 3.2"
