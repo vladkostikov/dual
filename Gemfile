@@ -69,4 +69,4 @@ gem 'ransack', '3.2.1'
 gem 'responders'
 gem 'active_model_serializers'
 
-gem "react-rails", "~> 3.2"
+gem 'webpacker-react', "~> 1.0.0.beta.1"
