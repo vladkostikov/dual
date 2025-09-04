@@ -29,7 +29,7 @@ const data = {
 };
 
 function TaskBoard() {
-  return <Board initialBoard={data} />;
+  return <Board initialBoard={data} disableColumnDrag/>;
 }
 
 export default TaskBoard;
