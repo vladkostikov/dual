@@ -287,6 +287,8 @@ GEM
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
+    webpacker-react (1.0.0.beta.1)
+      webpacker
     websocket (1.2.11)
     websocket-driver (0.8.0)
       base64
@@ -328,6 +330,7 @@ DEPENDENCIES
   web-console (>= 4.1.0)
   webdrivers
   webpacker (~> 5.0)
+  webpacker-react (~> 1.0.0.beta.1)
 
 RUBY VERSION
    ruby 2.7.8p225
