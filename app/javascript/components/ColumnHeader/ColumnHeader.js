@@ -6,47 +6,56 @@ import SystemUpdateAltIcon from '@material-ui/icons/SystemUpdateAlt';
 
 import useStyles from './useStyles';
 
-const ColumnHeader = ({ column, onLoadMore }) => {
-    const styles = useStyles();
+function ColumnHeader({ column, onLoadMore }) {
+  const styles = useStyles();
 
-    const {
-        id,
-        title,
-        cards,
-        meta: { totalCount, currentPage },
-    } = column;
+  const {
+    id,
+    title,
+    cards,
+    meta: { totalCount, currentPage },
+  } = column;
 
-    const count = cards.length;
+  const count = cards.length;
 
-    const handleLoadMore = () => onLoadMore(id, currentPage + 1);
+  const handleLoadMore = () => onLoadMore(id, currentPage + 1);
 
-    return (
-        <div className={styles.root}>
-            <div className={styles.title}>
-                <b>{title}</b> ({count}/{totalCount || '…'})
-            </div>
-            <div className={styles.actions}>
-                {(() => {
-                    if (totalCount && count >= totalCount) return null;
-                    
-                    return (
-                        <IconButton aria-label="Load more" onClick={() => handleLoadMore()}>
-                            <SystemUpdateAltIcon fontSize="small" />
-                        </IconButton>
-                    );
-                })()}
-            </div>
-        </div>
-    );
-};
+  return (
+    <div className={styles.root}>
+      <div className={styles.title}>
+        <b>{title}</b> ({count}/{totalCount || '…'})
+      </div>
+      <div className={styles.actions}>
+        {(() => {
+          if (totalCount && count >= totalCount) return null;
+
+          return (
+            <IconButton aria-label="Load more" onClick={() => handleLoadMore()}>
+              <SystemUpdateAltIcon fontSize="small" />
+            </IconButton>
+          );
+        })()}
+      </div>
+    </div>
+  );
+}
 
 ColumnHeader.propTypes = {
-    column: PropTypes.shape({
-        id: PropTypes.string,
-        title: PropTypes.string,
-        cards: PropTypes.array,
-        meta: PropTypes.shape(),
-    }).isRequired
+  column: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    cards: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        description: PropTypes.string,
+      }),
+    ),
+    meta: PropTypes.shape({
+      totalCount: PropTypes.number,
+      currentPage: PropTypes.number,
+    }),
+  }).isRequired,
+  onLoadMore: PropTypes.func.isRequired,
 };
 
 export default ColumnHeader;

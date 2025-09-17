@@ -6,28 +6,28 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
-import UseStyles from "./useStyles";
+import UseStyles from './useStyles';
 
-const Task = ({ task }) => {
-    const styles = UseStyles() ;
+function Task({ task }) {
+  const styles = UseStyles();
 
-    return (
-        <Card className={styles.root}>
-            <CardHeader title={task.name} />
-            <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    {task.description}
-                </Typography>
-            </CardContent>
-        </Card>
-    );
-};
+  return (
+    <Card className={styles.root}>
+      <CardHeader title={task.name} />
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {task.description}
+        </Typography>
+      </CardContent>
+    </Card>
+  );
+}
 
 Task.propTypes = {
-    task: PropTypes.shape({
-        name: PropTypes.string,
-        description: PropTypes.string,
-    }).isRequired,
+  task: PropTypes.shape({
+    name: PropTypes.string,
+    description: PropTypes.string,
+  }).isRequired,
 };
 
 export default Task;
