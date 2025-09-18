@@ -9,6 +9,7 @@ import TasksRepository from '../../repositories/TasksRepository';
 import ColumnHeader from '../ColumnHeader';
 import TaskForm from '../../forms/TaskForm';
 import AddPopup from '../AddPopup';
+import EditPopup from '../EditPopup';
 
 import useStyles from './useStyles';
 
@@ -24,6 +25,7 @@ const STATES = [
 
 const MODES = {
   ADD: 'add',
+  EDIT: 'edit',
   NONE: 'none',
 };
 
@@ -40,6 +42,7 @@ function TaskBoard() {
   const [board, setBoard] = useState(initialBoard);
   const [boardCards, setBoardCards] = useState({});
   const [mode, setMode] = useState(MODES.NONE);
+  const [openedTaskId, setOpenedTaskId] = useState(null);
   const styles = useStyles();
 
   // eslint-disable-next-line no-use-before-define
@@ -80,7 +83,7 @@ function TaskBoard() {
       columns: STATES.map(({ key, value }) => ({
         id: key,
         title: value,
-        cards: propOr({}, 'cards', boardCards[key]),
+        cards: propOr([], 'cards', boardCards[key]),
         meta: propOr({}, 'meta', boardCards[key]),
       })),
     };
@@ -115,6 +118,7 @@ function TaskBoard() {
 
   const handleClose = () => {
     setMode(MODES.NONE);
+    setOpenedTaskId(null);
   };
 
   const handleTaskCreate = (params) => {
@@ -125,11 +129,33 @@ function TaskBoard() {
     });
   };
 
+  const loadTask = (id) => TasksRepository.show(id).then(({ data: { task } }) => task);
+
+  const handleTaskUpdate = (task) => {
+    const attributes = TaskForm.attributesToSubmit(task);
+
+    return TasksRepository.update(task.id, attributes).then(() => {
+      loadColumnInitial(task.state);
+      handleClose();
+    });
+  };
+
+  const handleTaskDestroy = (task) =>
+    TasksRepository.destroy(task.id).then(() => {
+      loadColumnInitial(task.state);
+      handleClose();
+    });
+
+  const handleEditPopupOpen = (task) => {
+    setOpenedTaskId(task.id);
+    setMode(MODES.EDIT);
+  };
+
   return (
     <div>
       <KanbanBoard
-        renderCard={(card) => <Task task={card} />}
         renderColumnHeader={(column) => <ColumnHeader column={column} onLoadMore={loadColumnMore} />}
+        renderCard={(card) => <Task onClick={handleEditPopupOpen} task={card} />}
         onCardDragEnd={handleCardDragEnd}
       >
         {board}
@@ -138,6 +164,15 @@ function TaskBoard() {
         <AddIcon />
       </Fab>
       {mode === MODES.ADD && <AddPopup onCardCreate={handleTaskCreate} onClose={handleClose} />}
+      {mode === MODES.EDIT && (
+        <EditPopup
+          onCardLoad={loadTask}
+          onCardDestroy={handleTaskDestroy}
+          onCardUpdate={handleTaskUpdate}
+          onClose={handleClose}
+          cardId={openedTaskId}
+        />
+      )}
     </div>
   );
 }
