@@ -10,10 +10,10 @@ export default {
   },
 
   attributesToSubmit(task) {
-    const pertmittedKeys = ['id', 'name', 'description'];
+    const permittedKeys = ['id', 'name', 'description'];
 
     return {
-      ...pick(pertmittedKeys, task),
+      ...pick(permittedKeys, task),
       assigneeId: propOr(null, 'id', task.assignee),
       authorId: propOr(null, 'id', task.author),
     };

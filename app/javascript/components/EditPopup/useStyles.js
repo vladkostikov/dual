@@ -1,6 +1,16 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
+  actions: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+
+  loader: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+
   modal: {
     display: 'flex',
     alignItems: 'center',
@@ -10,16 +20,6 @@ const useStyles = makeStyles(() => ({
 
   root: {
     width: 465,
-  },
-
-  loader: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
-
-  actions: {
-    display: 'flex',
-    justifyContent: 'flex-end',
   },
 }));
 
