@@ -5,12 +5,12 @@ import { propOr } from 'ramda';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 
-import Task from '../Task';
-import TasksRepository from '../../repositories/TasksRepository';
-import ColumnHeader from '../ColumnHeader';
-import TaskForm from '../../forms/TaskForm';
-import AddPopup from '../AddPopup';
-import EditPopup from '../EditPopup';
+import Task from 'components/Task';
+import TasksRepository from 'repositories/TasksRepository';
+import ColumnHeader from 'components/ColumnHeader';
+import TaskForm from 'forms/TaskForm';
+import AddPopup from 'components/AddPopup';
+import EditPopup from 'components/EditPopup';
 
 import useStyles from './useStyles';
 
