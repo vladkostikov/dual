@@ -14,8 +14,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Form from './components/Form';
 
+import TaskPresenter from 'presenters/TaskPresenter';
+
 import useStyles from './useStyles';
-import TaskPresenter from '../../presenters/TaskPresenter';
 
 function EditPopup({ cardId, onClose, onCardDestroy, onCardLoad, onCardUpdate }) {
   const [task, setTask] = useState(null);

@@ -4,8 +4,9 @@ import { has } from 'ramda';
 
 import TextField from '@material-ui/core/TextField';
 
-import TaskPresenter from '../../../presenters/TaskPresenter';
-import UserSelect from '../../../packs/components/UserSelect';
+import TaskPresenter from 'presenters/TaskPresenter';
+import UserSelect from 'packs/components/UserSelect';
+
 import useStyles from './useStyles';
 
 function Form({ errors, onChange, task }) {
