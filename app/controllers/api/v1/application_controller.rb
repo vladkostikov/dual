@@ -1,6 +1,8 @@
 class Api::V1::ApplicationController < Api::ApplicationController
   RANSACK_DEFAULT_SORT = 'created_at DESC'.freeze
 
+  respond_to :json
+
   def self.responder
     JsonResponder
   end
