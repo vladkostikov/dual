@@ -19,7 +19,7 @@ const MODES = {
 };
 
 function TaskBoard() {
-  const { board, loadBoard, loadColumnMore } = useTasks();
+  const { board, loadBoard, loadColumnMore, moveTask } = useTasks();
   const [mode, setMode] = useState(MODES.NONE);
   const [openedTaskId, setOpenedTaskId] = useState(null);
   const styles = useStyles();
@@ -42,7 +42,6 @@ function TaskBoard() {
     setOpenedTaskId(null);
   };
 
-  const handleCardDragEnd = () => {};
   const handleTaskCreate = () => {};
   const handleTaskLoad = () => {};
   const handleTaskUpdate = () => {};
@@ -56,7 +55,7 @@ function TaskBoard() {
 
       <KanbanBoard
         disableColumnDrag
-        onCardDragEnd={handleCardDragEnd}
+        onCardDragEnd={moveTask}
         renderCard={(card) => <Task onClick={handleOpenEditPopup} task={card} />}
         renderColumnHeader={(column) => <ColumnHeader column={column} onLoadMore={loadColumnMore} />}
       >

@@ -78,11 +78,22 @@ export const useTasksActions = () => {
     });
   };
 
+  const moveTask = (task, source, destination) => {
+    const transition = task.transitions?.find(({ to }) => destination.toColumnId === to);
+    if (!transition) return Promise.resolve(null);
+
+    return TasksRepository.update(task.id, { task: { stateEvent: transition.event } }).then(() =>
+      Promise.all([loadColumn(destination.toColumnId), loadColumn(source.fromColumnId)]),
+    );
+  };
+
+
   const loadBoard = () => STATES.map(({ key }) => loadColumn(key));
 
   return {
     loadBoard,
     loadColumn,
     loadColumnMore,
+    moveTask,
   };
 };
