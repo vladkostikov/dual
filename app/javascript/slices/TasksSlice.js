@@ -22,7 +22,10 @@ const tasksSlice = createSlice({
   reducers: {
     loadColumnSuccess(state, { payload }) {
       const { items, meta, columnId } = payload;
-      const column = state.board.columns.find(propEq('id', columnId));
+      const columnIndex = state.board.columns.findIndex((column) => column.id === columnId);
+      if (columnIndex === -1) return state;
+
+      const column = state.board.columns[columnIndex];
 
       state.board = changeColumn(state.board, column, {
         cards: items,
@@ -31,23 +34,47 @@ const tasksSlice = createSlice({
 
       return state;
     },
+    loadColumnAppendSuccess(state, { payload }) {
+      const { items, meta, columnId } = payload;
+      const columnIndex = state.board.columns.findIndex((column) => column.id === columnId);
+      if (columnIndex === -1) return state;
+
+      const column = state.board.columns[columnIndex];
+
+      state.board = changeColumn(state.board, column, {
+        cards: [...column.cards, ...items],
+        meta,
+      });
+
+      return state;
+    },
   },
 });
 
-const { loadColumnSuccess } = tasksSlice.actions;
+const { loadColumnSuccess, loadColumnAppendSuccess } = tasksSlice.actions;
 
 export default tasksSlice.reducer;
 
 export const useTasksActions = () => {
   const dispatch = useDispatch();
 
-  const loadColumn = (state, page = 1, perPage = 10) => {
+  const loadColumn = (columnId, page = 1, perPage = 10) => {
     TasksRepository.index({
-      q: { stateEq: state },
+      q: { stateEq: columnId },
       page,
       perPage,
     }).then(({ data }) => {
-      dispatch(loadColumnSuccess({ ...data, columnId: state }));
+      dispatch(loadColumnSuccess({ ...data, columnId }));
+    });
+  };
+
+  const loadColumnMore = (columnId, page = 1, perPage = 10) => {
+    TasksRepository.index({
+      q: { stateEq: columnId },
+      page,
+      perPage,
+    }).then(({ data }) => {
+      dispatch(loadColumnAppendSuccess({ ...data, columnId }));
     });
   };
 
@@ -55,5 +82,7 @@ export const useTasksActions = () => {
 
   return {
     loadBoard,
+    loadColumn,
+    loadColumnMore,
   };
 };

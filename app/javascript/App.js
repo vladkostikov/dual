@@ -1,5 +1,5 @@
 import React from 'react';
-import '@asseinfo/react-kanban/dist/styles.css'
+import '@asseinfo/react-kanban/dist/styles.css';
 
 import store from 'store';
 import { Provider } from 'react-redux';
