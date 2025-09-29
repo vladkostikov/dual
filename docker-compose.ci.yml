@@ -3,6 +3,7 @@ version: '2'
 services:
   db:
     image: postgres:11.4-alpine
+
   ci:
     build: .
     depends_on:
@@ -15,4 +16,10 @@ services:
       - DATABASE_PASSWORD=postgres
     volumes:
       - ./coverage:/app/coverage
-    command: sh -c "bundle exec rails webpacker:install && bundle exec rails db:create db:migrate && bundle exec rake test"
+    command: >
+      sh -c "
+        bundle exec rails webpacker:install &&
+        bundle exec rails db:create &&
+        bundle exec rails db:migrate &&
+        bundle exec rake test
+      "
