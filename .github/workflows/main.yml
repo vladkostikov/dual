@@ -18,6 +18,7 @@ jobs:
       - name: Run tests
         env:
           RAILS_ENV: test
+          CI: true
         run: docker compose --file docker-compose.ci.yml run ci
       - name: Check coverage
         run: ls -l coverage
