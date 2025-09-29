@@ -18,7 +18,7 @@ services:
       - ./coverage:/app/coverage
     command: >
       sh -c "
-        bundle exec rails webpacker:install &&
+        bundle exec rails webpacker:compile &&
         bundle exec rails db:create &&
         bundle exec rails db:migrate &&
         bundle exec rake test
