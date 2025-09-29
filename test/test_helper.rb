@@ -1,14 +1,5 @@
-require 'simplecov'
 require 'coveralls'
-
-Coveralls.wear!('rails')
-SimpleCov.start('rails') do
-  if ENV['CI']
-    formatter Coveralls::SimpleCov::Formatter
-  else
-    formatter SimpleCov::Formatter::HTMLFormatter
-  end
-end
+Coveralls.wear!
 
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
