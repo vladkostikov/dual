@@ -1,17 +1,24 @@
-FROM ruby:2.7.8-alpine
+FROM ruby:3.2.9-alpine
 
 ARG RAILS_ROOT=/task_manager
 ARG PACKAGES="vim openssl-dev postgresql-dev build-base curl nodejs-current npm yarn less tzdata git postgresql-client bash screen gcompat libffi libffi-dev"
 
-RUN apk add --no-cache $PACKAGES \
-    && gem update --system 3.3.22 \
+RUN apk add --no-cache $PACKAGES
+
+RUN gem update --system 3.4.19 \
     && gem install bundler:2.4.22
 
 RUN mkdir $RAILS_ROOT
 WORKDIR $RAILS_ROOT
 
 COPY Gemfile Gemfile.lock  ./
-RUN bundle install --jobs 5 && bundle pristine ffi
+
+ENV BUNDLE_PATH=/bundle_cache
+ENV GEM_HOME=/bundle_cache
+ENV GEM_PATH=/bundle_cache
+
+RUN bundle install --jobs 5
+RUN bundle pristine ffi
 
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
