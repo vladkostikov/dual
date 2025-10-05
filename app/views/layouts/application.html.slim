@@ -6,11 +6,11 @@ html lang="en"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     title= content_for?(:title) ? yield(:title) : "Task Manager"
     link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"
-    = stylesheet_link_tag "application", media: "all"
-    = csrf_meta_tags
-    - if !Rails.env.development?
+    - if Rails.env.development?
+      = stylesheet_pack_tag "application", media: "all"
+    - else
       = stylesheet_packs_with_chunks_tag "application", media: "all"
-
+    = csrf_meta_tags
 
   body
     = javascript_packs_with_chunks_tag 'application'
@@ -28,7 +28,7 @@ html lang="en"
             - if current_user.is_a? Admin
               = link_to "Admin page", admin_users_url, class: 'mdl-navigation__link'
             = current_user.first_name
-            = link_to "Log out", session_path, method: "delete", data: { confirm: "Log out?" }, class: 'mdl-navigation__link'
+            = link_to "Log out", session_path, method: "delete", class: 'mdl-navigation__link'
           - else
             = link_to "Sign in", new_session_path, class: 'mdl-navigation__link'
             = link_to "Sign up", new_developer_path, class: 'mdl-navigation__link'
