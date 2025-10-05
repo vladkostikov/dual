@@ -13,11 +13,13 @@ WORKDIR $RAILS_ROOT
 
 COPY Gemfile Gemfile.lock  ./
 
-ENV BUNDLE_PATH=/bundle_cache
-ENV GEM_HOME=/bundle_cache
-ENV GEM_PATH=/bundle_cache
+ENV BUNDLE_PATH=/bundle_cache \
+    GEM_HOME=/bundle_cache \
+    GEM_PATH=/bundle_cache \
+    BUNDLE_JOBS=5 \
+    BUNDLE_RETRY=3
 
-RUN bundle install --jobs 5
+RUN bundle install
 RUN bundle pristine ffi
 
 COPY package.json yarn.lock ./
