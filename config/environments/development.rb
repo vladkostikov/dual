@@ -73,4 +73,10 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  if ENV["RAILS_ALLOWED_HOSTS"]
+    ENV["RAILS_ALLOWED_HOSTS"].split(",").each do |host|
+      config.hosts << host.strip
+    end
+  end
 end

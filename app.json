@@ -1,0 +1,45 @@
+{
+  "name": "Task Manager",
+  "description": "Ruby on Rails Task Manager application",
+  "keywords": ["rails", "ruby", "task-manager"],
+  "scripts": {
+    "dokku": {
+      "predeploy": "bundle exec rake assets:precompile"
+    }
+  },
+  "env": {
+    "RAILS_ENV": {
+      "description": "Rails environment",
+      "value": "production"
+    },
+    "RAILS_SERVE_STATIC_FILES": {
+      "description": "Serve static files",
+      "value": "true"
+    },
+    "NODE_OPTIONS": {
+      "description": "Node.js options for webpack compatibility",
+      "value": "--openssl-legacy-provider"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "addons": [
+    "postgresql"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/ruby"
+    }
+  ],
+  "engines": {
+    "node": "18.20.4",
+    "npm": "9.12.2"
+  }
+}

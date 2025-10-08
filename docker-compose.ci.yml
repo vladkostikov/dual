@@ -1,5 +1,3 @@
-version: '2'
-
 services:
   db:
     image: postgres:11.4-alpine
@@ -9,17 +7,17 @@ services:
     depends_on:
       - db
     environment:
-      - RAILS_ENV
+      - RAILS_ENV=test
       - CI=true
       - DATABASE_HOST=db
       - DATABASE_USERNAME=postgres
       - DATABASE_PASSWORD=postgres
+      - NODE_OPTIONS=--openssl-legacy-provider
     volumes:
       - ./coverage:/app/coverage
     command: >
       sh -c "
         bundle exec rails webpacker:compile &&
-        bundle exec rails db:create &&
-        bundle exec rails db:migrate &&
+        bundle exec rails db:prepare &&
         bundle exec rake test
       "

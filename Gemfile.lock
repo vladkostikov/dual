@@ -96,6 +96,7 @@ GEM
     factory_bot_rails (6.4.3)
       factory_bot (~> 6.4)
       railties (>= 5.0.0)
+    ffi (1.17.2-x86_64-linux-gnu)
     ffi (1.17.2-x86_64-linux-musl)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -157,6 +158,7 @@ GEM
     parser (3.3.9.0)
       ast (~> 2.4.1)
       racc
+    pg (1.6.1-x86_64-linux)
     pg (1.6.1-x86_64-linux-musl)
     prism (1.4.0)
     public_suffix (5.1.1)
@@ -311,6 +313,7 @@ GEM
     zeitwerk (2.6.18)
 
 PLATFORMS
+  x86_64-linux
   x86_64-linux-musl
 
 DEPENDENCIES
@@ -348,7 +351,7 @@ DEPENDENCIES
   webpacker-react (~> 1.0.0.beta.1)
 
 RUBY VERSION
-   ruby 2.7.8p225
+   ruby 3.2.9p265
 
 BUNDLED WITH
    2.4.22

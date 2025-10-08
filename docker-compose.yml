@@ -1,5 +1,3 @@
-version: '3.7'
-
 services:
   web:
     build: .
@@ -8,6 +6,7 @@ services:
       - ~/.ssh:/root/.ssh
       - ~/.bash_history:/root/.bash_history
       - &bundle-cache-volume bundle_cache:/bundle_cache
+      - &packs_volume-volume packs_volume:/task_manager/public/packs
     ports:
       - 3000:3000
       - 3001:3001
@@ -35,3 +34,4 @@ services:
 
 volumes:
   bundle_cache:
+  packs_volume:
