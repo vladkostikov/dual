@@ -1,3 +1,20 @@
+doctype HTML
 html
-  body
-    = yield
+  head
+    meta http-equiv="Content-Type" content="text/html; charset=utf-8"
+    title Email template
+  body bgcolor="#efefef" style="padding: 0; margin: 0;"
+    table border="0" cellpadding="0" cellspacing="0" width="100%"
+      tr
+        td align="center"
+          table width="600" border="0" cellpadding="0" cellspacing="0"
+            tr
+              td bgcolor="#3F52B5" align="center" style="padding: 30px 0;"
+                span style="color:#ffffff; font-size: 20px; font-family:Arial, Helvetica, sans-serif;"
+                  b Task Board Project
+            tr
+              td
+                = yield
+            tr
+              td style="padding: 20px; text-align: center; color: #666; font-size: 12px;"
+                | © 2025 Dualboot Learn
