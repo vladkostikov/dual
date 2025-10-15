@@ -41,6 +41,8 @@ group :development do
   gem 'listen', '~> 3.3'
   gem 'rubocop', require: false
   gem 'bullet'
+  gem 'letter_opener'
+  gem 'letter_opener_web'
 end
 
 group :test do
