@@ -90,5 +90,7 @@ Rails.application.configure do
     end
   end
 
+  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
+
   config.web_console.permissions = '192.168.0.0/16'
 end

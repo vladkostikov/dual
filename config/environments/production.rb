@@ -134,4 +134,6 @@ Rails.application.configure do
       config.hosts << host.strip
     end
   end
+
+  Rails.application.routes.default_url_options[:host] = ENV.fetch("DEFAULT_HOST") || config.hosts.first
 end
