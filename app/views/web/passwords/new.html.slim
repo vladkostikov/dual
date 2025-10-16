@@ -1,0 +1,11 @@
+h4 Forgot Password?
+
+= simple_form_for @form, url: password_path, method: :post do |f|
+  - if @form.errors.any?
+    ul.errors
+      - @form.errors.full_messages.each do |msg|
+        li= msg
+  p
+    = f.input :email, label: "Email", required: true
+  p
+    = f.button :submit, "Send Reset Link"
