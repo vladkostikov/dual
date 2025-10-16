@@ -10,7 +10,8 @@ class PasswordResetForm
   end
 
   def deliver_reset_password_instructions
-    return false unless valid? && user
+    return false unless valid?
+    return false unless user
 
     user.generate_reset_password_token!
     UserMailer.with(user: user).reset_password.deliver_now
