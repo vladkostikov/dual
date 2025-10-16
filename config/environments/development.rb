@@ -89,4 +89,6 @@ Rails.application.configure do
       config.hosts << host.strip
     end
   end
+
+  config.web_console.permissions = '192.168.0.0/16'
 end
