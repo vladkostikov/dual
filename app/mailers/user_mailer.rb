@@ -1,6 +1,4 @@
 class UserMailer < ApplicationMailer
-  default from: 'noreply@kostikov.ru'
-
   def task_created
     user = params[:user]
     @task = params[:task]

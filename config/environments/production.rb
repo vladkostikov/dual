@@ -76,7 +76,7 @@ Rails.application.configure do
     port: ENV['MAILER_PORT'],
     domain: ENV['MAILER_DOMAIN'],
     authentication: ENV['MAILER_AUTHENTICATION'],
-    enable_starttls_auto: true,
+    ssl: true,
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
