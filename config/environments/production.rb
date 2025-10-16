@@ -135,5 +135,5 @@ Rails.application.configure do
     end
   end
 
-  Rails.application.routes.default_url_options[:host] = ENV.fetch("DEFAULT_HOST") || config.hosts.first
+  Rails.application.routes.default_url_options[:host] = ENV.fetch("DEFAULT_HOST", config.hosts.first)
 end
