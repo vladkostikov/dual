@@ -56,7 +56,7 @@ class UserMailerTest < ActionMailer::TestCase
     user.generate_reset_password_token!
     params = { user: user }
 
-    email = UserMailer.with(params).reset_password_email(user)
+    email = UserMailer.with(params).reset_password
 
     assert_emails 1 do
       email.deliver_now

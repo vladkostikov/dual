@@ -18,7 +18,7 @@ class Web::PasswordsController < Web::ApplicationController
     @form = PasswordUpdateForm.new(password_update_params)
 
     if @form.save
-      redirect_to(session_path, notice: 'Password has been successfully updated. Please log in.')
+      redirect_to(new_session_path, notice: 'Password has been successfully updated. Please log in.')
     else
       render(:edit)
     end

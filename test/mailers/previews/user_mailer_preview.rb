@@ -12,8 +12,8 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.with(params).task_destroyed
   end
 
-  def password_reset
-    UserMailer.with(params).password_reset
+  def reset_password
+    UserMailer.with(params).reset_password
   end
 
   private
