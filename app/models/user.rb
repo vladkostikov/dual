@@ -11,7 +11,7 @@ class User < ApplicationRecord
   def generate_reset_password_token!
     begin
       self.reset_password_token = SecureRandom.urlsafe_base64
-    end while User.exists?(reset_password_token: self.reset_password_token)
+    end while User.exists?(reset_password_token: reset_password_token)
 
     self.reset_password_sent_at = Time.current
     save!

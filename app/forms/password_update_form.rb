@@ -24,7 +24,7 @@ class PasswordUpdateForm
 
   def token_valid?
     if user.blank? || !user.reset_password_period_valid?
-      errors.add(:token, "is invalid or expired")
+      errors.add(:token, 'is invalid or expired')
     end
   end
 end
