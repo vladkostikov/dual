@@ -46,7 +46,7 @@ class Web::PasswordsControllerTest < ActionController::TestCase
   test 'should patch update and change password if valid' do
     user = create(:user)
     user.generate_reset_password_token!
-    new_password = 'newpassword123'
+    new_password = generate(:password)
     attrs = {
       token: user.reset_password_token,
       password: new_password,
@@ -67,8 +67,8 @@ class Web::PasswordsControllerTest < ActionController::TestCase
     user.generate_reset_password_token!
     attrs = {
       token: user.reset_password_token,
-      password: '123',
-      password_confirmation: '456',
+      password: generate(:password),
+      password_confirmation: generate(:password),
     }
 
     patch :update, params: { password_update_form: attrs }
