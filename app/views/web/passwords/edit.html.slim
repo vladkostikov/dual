@@ -1,15 +1,4 @@
 h4 Reset Your Password
 
 = simple_form_for @form, url: password_path, method: :patch do |f|
-  - if @form.errors.any?
-    ul.errors
-      - @form.errors.full_messages.each do |msg|
-        li= msg
-
-  = f.hidden_field :token, value: @form.token
-
-  p
-    = f.input :password, label: "New Password", required: true
-    = f.input :password_confirmation, label: "Confirm New Password", required: true
-  p
-    = f.button :submit, "Update Password"
+  = render "form", f: f, submit_label: "Update Password"

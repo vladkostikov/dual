@@ -1,0 +1,16 @@
+- obj = f.object
+
+- if obj.errors.any?
+  ul.errors
+    - obj.errors.full_messages.each do |msg|
+      li= msg
+
+= f.hidden_field :token if obj.respond_to?(:token) && obj.token.present?
+
+= f.input :email, label: "Email", required: true if obj.respond_to?(:email)
+
+= f.input :password, label: "New Password", required: true if obj.respond_to?(:password)
+= f.input :password_confirmation, label: "Confirm New Password", required: true if obj.respond_to?(:password_confirmation)
+
+p
+  = f.button :submit, submit_label
