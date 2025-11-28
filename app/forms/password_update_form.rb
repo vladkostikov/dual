@@ -16,14 +16,14 @@ class PasswordUpdateForm
     return false unless valid?
 
     user.update(password: password)
-    user.clear_reset_password_token!
+    ResetPasswordService.new(user).clear_token!
     true
   end
 
   private
 
   def token_valid?
-    if user.blank? || !user.reset_password_period_valid?
+    if user.blank? || !ResetPasswordService.new(user).token_valid?
       errors.add(:token, 'is invalid or expired')
     end
   end

@@ -13,7 +13,7 @@ class PasswordResetForm
     return false unless valid?
     return false unless user
 
-    user.generate_reset_password_token!
+    ResetPasswordService.new(user).generate_token!
     UserMailer.with(user: user).reset_password.deliver_now
     true
   end

@@ -34,18 +34,17 @@ class Web::PasswordsControllerTest < ActionController::TestCase
 
   test 'should get edit' do
     user = create(:user)
-    user.generate_reset_password_token!
+    token = ResetPasswordService.new(user).generate_token!
 
-    get :edit, params: { token: user.reset_password_token }
+    get :edit, params: { token: token }
 
     assert_response :success
-
     assert_select 'form input[name="password_update_form[token]"][type="hidden"][value=?]', user.reset_password_token
   end
 
   test 'should patch update and change password if valid' do
     user = create(:user)
-    user.generate_reset_password_token!
+    ResetPasswordService.new(user).generate_token!
     new_password = generate(:password)
     attrs = {
       token: user.reset_password_token,
@@ -64,7 +63,7 @@ class Web::PasswordsControllerTest < ActionController::TestCase
 
   test 'should render edit if password update invalid' do
     user = create(:user)
-    user.generate_reset_password_token!
+    ResetPasswordService.new(user).generate_token!
     attrs = {
       token: user.reset_password_token,
       password: generate(:password),
