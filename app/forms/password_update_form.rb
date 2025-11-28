@@ -15,7 +15,7 @@ class PasswordUpdateForm
   def save
     return false unless valid?
 
-    user.update(password: password, password_confirmation: password_confirmation)
+    user.update(password: password)
     user.clear_reset_password_token!
     true
   end
