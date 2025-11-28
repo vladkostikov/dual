@@ -34,6 +34,11 @@ html lang="en"
             = link_to "Sign up", new_developer_path, class: 'mdl-navigation__link'
     main#main.mdl-layout__content
       .page-content
+        - if notice
+          - color_class = 'mdl-color--indigo-500 mdl-color-text--white'
+          div class="#{color_class}" style="width: 100%; padding: 16px; box-sizing: border-box;" role="alert"
+            = notice
+
         = yield
     footer#footer.mdl-mini-footer
       .mdl-mini-footer__left-section
