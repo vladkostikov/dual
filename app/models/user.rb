@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  RESET_PASSWORD_PERIOD = 24.hours
+
   has_secure_password
 
   has_many :my_tasks, class_name: 'Task', foreign_key: :author_id
@@ -18,7 +20,7 @@ class User < ApplicationRecord
   end
 
   def reset_password_period_valid?
-    reset_password_sent_at && reset_password_sent_at >= 24.hours.ago
+    reset_password_sent_at && reset_password_sent_at >= RESET_PASSWORD_PERIOD.ago
   end
 
   def clear_reset_password_token!
