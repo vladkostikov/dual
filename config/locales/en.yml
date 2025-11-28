@@ -31,3 +31,7 @@
 
 en:
   hello: "Hello world"
+  errors:
+    messages:
+      invalid_or_expired: "is invalid or expired"
+      email_or_password_invalid: "email or password doesn't match"
