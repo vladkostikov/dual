@@ -81,3 +81,5 @@ gem 'js-routes'
 gem 'rollbar'
 
 gem 'newrelic_rpm'
+
+gem 'sidekiq'
