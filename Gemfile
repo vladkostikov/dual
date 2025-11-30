@@ -83,3 +83,4 @@ gem 'rollbar'
 gem 'newrelic_rpm'
 
 gem 'sidekiq'
+gem 'sidekiq-failures'
