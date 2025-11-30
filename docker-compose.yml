@@ -14,7 +14,7 @@ services:
     depends_on:
       - db
       - redis
-      - sedikiq
+      - sidekiq
     environment: &web-environment
       BUNDLE_PATH: /bundle_cache
       GEM_HOME: /bundle_cache
@@ -38,7 +38,7 @@ services:
   redis:
     image: redis:7-alpine
 
-  sedikiq:
+  sidekiq:
     build: .
     command: bundle exec sidekiq -C /task_manager/config/sidekiq.yml
     environment: *web-environment
