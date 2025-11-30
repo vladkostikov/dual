@@ -20,5 +20,7 @@ module TaskManager
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.assets.paths << Rails.root.join('node_modules')
+
+    config.active_job.queue_adapter = :sidekiq
   end
 end
