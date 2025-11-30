@@ -15,7 +15,8 @@ class UserMailer < ApplicationMailer
 
   def task_destroyed
     user = params[:user]
-    @task = params[:task]
+    @task_id = params[:task_id]
+    @task_name = params[:task_name]
 
     mail(to: user.email, subject: 'Task Destroyed')
   end
