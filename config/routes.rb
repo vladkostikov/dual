@@ -1,3 +1,5 @@
+require 'sidekiq_unique_jobs/web'
+
 Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   mount Sidekiq::Web => '/admin/sidekiq'
