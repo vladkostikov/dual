@@ -19,16 +19,25 @@
     "NODE_OPTIONS": {
       "description": "Node.js options for webpack compatibility",
       "value": "--openssl-legacy-provider"
+    },
+    "REDIS_URL": {
+      "description": "Redis connection URL",
+      "value": "redis://dokku-redis:6379"
     }
   },
   "formation": {
     "web": {
       "quantity": 1,
       "size": "basic"
+    },
+    "worker": {
+      "quantity": 1,
+      "size": "basic"
     }
   },
   "addons": [
-    "postgresql"
+    "postgresql",
+    "redis"
   ],
   "buildpacks": [
     {
