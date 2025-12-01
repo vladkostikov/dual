@@ -1,8 +1,3 @@
-require 'sidekiq_unique_jobs/web'
-Sidekiq::Web.use Rack::Auth::Basic do |username, password|
-  username == ENV['SIDEKIQ_USER'] && password == ENV['SIDEKIQ_PASSWORD']
-end
-
 Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   mount Sidekiq::Web => '/admin/sidekiq'
