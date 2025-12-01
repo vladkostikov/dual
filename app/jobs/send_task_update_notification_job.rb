@@ -1,6 +1,5 @@
-class SendTaskUpdateNotificationJob < ApplicationJob
+class SendTaskUpdateNotificationJob < MailerJob
   sidekiq_options queue: :mailers, lock: :until_and_while_executing, on_conflict: { client: :log, server: :reject }
-  sidekiq_throttle_as :mailer
 
   def perform(task_id)
     task = Task.find_by(id: task_id)
