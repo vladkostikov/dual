@@ -14,7 +14,7 @@ class PasswordResetForm
     return false unless user
 
     ResetPasswordService.new(user).generate_token!
-    UserMailer.with(user: user).reset_password.deliver_now
+    SendResetPasswordNotificationJob.perform_async(user.id)
     true
   end
 end
