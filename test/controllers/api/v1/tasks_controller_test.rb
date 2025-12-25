@@ -66,8 +66,8 @@ class Api::V1::TasksControllerTest < ActionController::TestCase
   end
 
   test 'should put attach_image' do
-    author = create :user
-    task = create :task, author: author
+    author = create(:user)
+    task = create(:task, author: author)
 
     image = file_fixture('image.jpg')
     attachment_params = {
@@ -86,8 +86,8 @@ class Api::V1::TasksControllerTest < ActionController::TestCase
   end
 
   test 'should put remove_image' do
-    author = create :user
-    task = create :task, author: author
+    author = create(:user)
+    task = create(:task, author: author)
 
     image = file_fixture('image.jpg')
     attachable_image = fixture_file_upload(image)

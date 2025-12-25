@@ -16,8 +16,8 @@ class TaskAttachImageForm
   end
 
   validates :image, presence: true,
-            file_size: { less_than_or_equal_to: 2.megabytes },
-            file_content_type: { allow: ['image/jpeg', 'image/png'] }
+                    file_size: { less_than_or_equal_to: 2.megabytes },
+                    file_content_type: { allow: ['image/jpeg', 'image/png'] }
 
   def processed_image
     ImageProcessingService.crop!(image.path, crop_width, crop_height, crop_x, crop_y) if cropping?
