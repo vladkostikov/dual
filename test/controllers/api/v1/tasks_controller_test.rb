@@ -78,7 +78,7 @@ class Api::V1::TasksControllerTest < ActionController::TestCase
       crop_height: 300,
     }
 
-    put :attach_image, params: { id: task.id, attachment: attachment_params, format: :json }
+    patch :attach_image, params: { id: task.id, attachment: attachment_params, format: :json }
     assert_response :success
 
     task.reload
@@ -94,7 +94,7 @@ class Api::V1::TasksControllerTest < ActionController::TestCase
 
     task.image.attach(attachable_image)
 
-    put :remove_image, params: { id: task.id, format: :json }
+    patch :remove_image, params: { id: task.id, format: :json }
     assert_response :success
 
     task.reload
