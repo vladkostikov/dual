@@ -1,7 +1,7 @@
 FROM ruby:3.2.9-alpine
 
 ARG RAILS_ROOT=/task_manager
-ARG PACKAGES="vim openssl-dev postgresql-dev build-base curl nodejs-current npm yarn less tzdata git postgresql-client bash screen gcompat libffi libffi-dev"
+ARG PACKAGES="vim openssl-dev postgresql-dev build-base curl nodejs-current npm yarn less tzdata git postgresql-client bash screen gcompat libffi libffi-dev imagemagick imagemagick-dev jpeg-dev"
 
 RUN apk add --no-cache $PACKAGES
 

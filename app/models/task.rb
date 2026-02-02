@@ -5,6 +5,8 @@ class Task < ApplicationRecord
   validates :name, :description, :author, presence: true
   validates :description, length: { maximum: 500 }
 
+  has_one_attached :image
+
   state_machine :state, initial: :new_task do
     event :send_to_development do
       transition [:new_task, :in_qa, :in_code_review] => :in_development

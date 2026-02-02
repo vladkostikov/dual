@@ -64,4 +64,50 @@ class Api::V1::TasksControllerTest < ActionController::TestCase
 
     assert !Task.where(id: task.id).exists?
   end
+
+  test 'should put attach_image' do
+    author = create(:user)
+    task = create(:task, author: author)
+
+    image = file_fixture('image.jpg')
+    attachment_params = {
+      image: fixture_file_upload(image, 'image/jpeg'),
+      crop_x: 190,
+      crop_y: 100,
+      crop_width: 300,
+      crop_height: 300,
+    }
+
+    patch :attach_image, params: { id: task.id, attachment: attachment_params, format: :json }
+    assert_response :success
+
+    task.reload
+    assert task.image.attached?
+  end
+
+  test 'should put remove_image' do
+    author = create(:user)
+    task = create(:task, author: author)
+
+    image = file_fixture('image.jpg')
+    attachable_image = fixture_file_upload(image)
+
+    task.image.attach(attachable_image)
+
+    patch :remove_image, params: { id: task.id, format: :json }
+    assert_response :success
+
+    task.reload
+    refute task.image.attached?
+  end
+
+  def after_teardown
+    super
+
+    remove_uploaded_files
+  end
+
+  def remove_uploaded_files
+    FileUtils.rm_rf(ActiveStorage::Blob.service.root)
+  end
 end
